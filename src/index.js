@@ -1,6 +1,5 @@
 import Immutable from 'immutable';
 
-
 const types = ['Map', 'List', 'Set', 'Stack', 'OrderedMap', 'OrderedSet'];
 const isImmutable = data => types.some(type => Immutable[type][`is${type}`](data));
 
@@ -65,4 +64,18 @@ const reorder = (map, keys) => {
     });
 };
 
-export {getIn, wrap, unwrap, isImmutable, getImmProperties, insertAfter, insertBefore, reorder};
+function isNull(value) {
+    return value === undefined || value === null
+}
+
+const createImmutableComparator = (field, { desc = false, nullsLast = true } = {}) => (a, b) => {
+    const fa = a.get(field);
+    const fb = b.get(field);
+
+    return (nullsLast ? (isNull(fa)) - (isNull(fb)) : (isNull(fb)) - (isNull(fa)))
+        || (desc ? +(fb > fa) : +(fa > fb))
+        || (desc ? -(fb > fa) : -(fa > fb));
+};
+
+
+export { getIn, wrap, unwrap, isImmutable, getImmProperties, insertAfter, insertBefore, reorder, createImmutableComparator };

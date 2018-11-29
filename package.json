@@ -1,6 +1,6 @@
 {
   "name": "immutablejs-utils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "lib/index.js",
   "author": "dmansurov83@gmail.com",
@@ -11,18 +11,21 @@
   },
   "scripts": {
     "clean": "rimraf lib",
+    "test": "jest",
     "compile": "babel src --loose --out-dir lib",
-    "prepublish": "npm run test && npm run clean && npm run compile"
+    "prepublish": "yarn test && yarn clean && yarn compile"
   },
   "peerDependencies": {
     "immutable": "^3.8.2"
   },
   "devDependencies": {
+    "immutable": "^3.8.2",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-plugin-transform-es2015-destructuring": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "jest": "^23.6.0",
     "rimraf": "^2.6.2"
   }
 }
