@@ -1,4 +1,4 @@
-import { wrap, getIn } from '../lib';
+import { wrap, getIn } from '../src';
 
 function getPrimitives() {
     return {
